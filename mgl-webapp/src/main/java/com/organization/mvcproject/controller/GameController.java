@@ -50,9 +50,6 @@ public class GameController {
 		return "gamesPage";
 	}
 
-	/**
-	 * TODO 2.0 (Separation of concerns) consider moving all controller endpoints that return a ResponseEntity into a @RestController.
-	 */
 	
 	@RequestMapping(value = "/game", method = RequestMethod.GET)
 	public ResponseEntity<List<Game>> fetchAllGames() {
