@@ -33,7 +33,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading text-light"><span class="lead">Game Registration Form </span></div>
                 <div class="formcontainer">
-                    <form ng-submit="MGL_T1_ctrl.addGame()" name="gameForm" class="form-horizontal">
+                    <form ng-submit="MGL_T1_ctrl.saveOrUpdateGame()" name="gameForm" class="form-horizontal">
                         <input type="hidden" ng-model="MGL_T1_ctrl.game.game_id" />
                         <div class="row">
                             <div class="form-group col-md-12">
@@ -61,7 +61,9 @@
 
                         <div class="row">
                             <div class="form-actions floatRight">
-                                <input type="submit" value="Add" class="btn btn-primary btn-sm">
+                                <input ng-if = "!(MGL_T1_ctrl.game.id)" type="submit" value="Add" class="btn btn-primary btn-sm">                                
+                                <input ng-if = "MGL_T1_ctrl.game.id" type="submit" value="Update" class="btn btn-primary btn-sm">
+                                <button data-ng-click="MGL_T1_ctrl.clearForm()" value="Clear" class="btn btn-secondary btn-sm">Clear</button>
                             </div>
                         </div>
                     </form>
@@ -83,8 +85,9 @@
                             <tr ng-repeat="currentGame in MGL_T1_ctrl.games">
                                 <td><span ng-bind="currentGame.name"></span></td>
                                 <td><span ng-bind="currentGame.genre"></span></td>
-                                <td>
-                                </td>
+                                <td></td>
+                                <td><button class="btn btn-secondary btn-sm" ng-click="MGL_T1_ctrl.selectGame(currentGame)">Select</button></td>
+                                <td><button class="btn btn-secondary btn-sm" ng-click="MGL_T1_ctrl.deleteGame(currentGame.id)">Delete</button></td>
                             </tr>
                         </tbody>
                     </table>
